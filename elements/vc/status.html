@@ -1,0 +1,26 @@
+<div class="padSmall x100">
+	<div class="h2">
+		<h2>Server Status</h2>
+	</div>
+	<ul class="items">
+		<li>
+			<div class="header x70">Converter Threads</div> <span>{{convertThreads}}</span>
+		</li>
+		<li>
+			<div class="header x70">Uploader Threads</div> <span>{{uploadThreads}}</span>
+		</li>
+		<li>
+			<div class="header x70">History List Size</div> <span id="historySize">{{history|size}}</span>
+		</li>
+		<li>
+			<div class="header x70">Upload List Size</div> <span id="uploadSize">{{uploadQueue|size}}</span>
+		</li>
+		<li>
+			<div class="header x70">Convert List Size</div> <span id="queueSize">{{queue|size}}</span>
+		</li>
+	</ul>
+</div>
+<div class="insertBeforeStatus"></div>
+<script>
+vc.openConverters = new Array();
+</script>

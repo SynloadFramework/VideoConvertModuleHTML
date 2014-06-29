@@ -1,0 +1,28 @@
+<div class="navbar" role="navigation" style="margin-bottom:0;width:100%;">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="javascript:system.loadDefault();template.showLoad();">Video Converter</a>
+	</div>
+	<div class="menu">
+		<ul>
+			<li id="loginId"><a href="javascript:user.showLogin();template.showLoad();">Login</a></li>
+			<li class="registered" style="display:none;"><a href="javascript:vc.history();template.showLoad();">History</a></li>
+			<li class="registered" style="display:none;"><a href="javascript:vc.queue();template.showLoad();">Convert Queue</a></li>
+			<li class="registered" style="display:none;"><a href="javascript:vc.users();template.showLoad();">Users</a></li>
+			<li class="registered" style="display:none;"><a href="javascript:vc.upload();template.showLoad();">Upload Video</a></li>
+			<li id="logoutId" style="display:none;"><a href="javascript:user.logout();template.showLoad();">Logout</a></li>
+		</ul>
+	</div>
+	<div style="float:right;margin-right:20px;" id="ldbars"><img src="http://thumb.animecap.com/loadingbars.gif" /></div>
+	
+</div>
+<div id="content"></div>
+<script>
+$(function(){
+	if(user.name!=""){
+		$("#logoutId a").html("Logout "+user.name);
+		$("#loginId").fadeOut();
+		$(".registered").fadeIn();
+		$("#logoutId").fadeIn();
+	}
+});
+</script>

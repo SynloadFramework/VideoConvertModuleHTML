@@ -1,0 +1,58 @@
+<div class="padSmall x100">
+	<h3>Conversion Queue</h3>
+	<div class="inner x100">
+		<div class="x100 paginate">
+			<div class="historyPagination" style="float:right;"></div>
+		</div>
+		<table width="100%">
+			<tr>
+				<th>Video ID</th>
+				<th>File Name</th>
+				<th>Size</th>
+				<th>User</th>
+				<th>Video File</th>
+			</tr>
+		{{if queue|empty}}
+			<tr>
+				<td colspan="5" align="center">Nothing In Queue</td>
+			</tr>
+		{{/if}}
+		{{queue}}
+			<tr>
+				{{if .|isString}}
+					<td colspan="5">{{.}}</td>
+				{{else}}
+					<td align="center"><a href="/play/{{id}}/{{account.username|uuid}}/" target="_blank">{{id}}</a></td>
+					<td><a href="/details/{{id}}/{{account.username|uuid}}/" target="_blank">{{fileName}}</a></td>
+					<td align="center">{{size|filesize}}</td>
+					<td align="center">{{account.username}}</td>
+					<td align="center">{{videofile}}</td>
+				{{/if}}
+			</tr>
+		{{/queue}}
+			<tr>
+				<th>Video ID</th>
+				<th>File Name</th>
+				<th>Size</th>
+				<th>User</th>
+				<th>Video File</th>
+			</tr>
+		</table>
+		<div class="x100 paginate">
+			<div class="historyPagination" style="float:right;"></div>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	$(".queuePagination").pagination({
+		items: {{queueTotal}},
+		itemsOnPage: {{limit}},
+		cssStyle: 'light-theme',
+		currentPage:{{queuePage}},
+		onPageClick: function(pageNumber, event){
+			vc.queueActionsPage(pageNumber);
+		}
+	});
+});
+</script>

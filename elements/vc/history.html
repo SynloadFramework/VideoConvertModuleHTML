@@ -1,0 +1,81 @@
+<div class="padSmall x100">
+	<h3>Conversion History</h3>
+	<div class="inner x100">
+		<div class="x100">
+			<span style="padding:10px;display:block;float:left;"><a href="javascript:vc.type='list';vc.historyActionsPage({{historyPage}});">list</a> | <a href="javascript:vc.type='icons';vc.historyActionsPage({{historyPage}});">icons</a></span>
+		</div>
+		<div class="x100 paginate">
+			<div class="historyPagination" style="float:right;"></div>
+		</div>
+		{{if listType|equals>icons}}
+			{{history}}
+			<tr>
+				{{if .|isString}}
+					NO RESULTS
+				{{else}}
+					<div style="float:left;margin:17px;width:230px;height:190px;text-align:center;">
+						<a href="/play/{{id}}/{{account.username|uuid}}/" style="background:#f9f9f9;padding:10px;display:block;" target="_blank">
+							<img src="/thumb/{{id}}/{{account.username|uuid}}/" width=200 style="max-height:120px;" />
+							{{id}}<br/>[{{size|filesize}}]
+						</a>
+					</div>
+				{{/if}}
+			</tr>
+			{{/history}}
+		{{else}}
+		<table width="100%">
+			<tr>
+				<th>Video ID</th>
+				<th>File Name</th>
+				<th>Size</th>
+				<th>User</th>
+				<th>Video File</th>
+				<th></th>
+			</tr>
+		{{if history|empty}}
+			<tr>
+				<td colspan="5" align="center">Nothing In History</td>
+			</tr>
+		{{/if}}
+		{{history}}
+			<tr>
+				{{if .|isString}}
+					<td colspan="5">{{.}}</td>
+				{{else}}
+					<td align="center"><a href="/play/{{id}}/{{account.username|uuid}}/" target="_blank">{{id}}</a></td>
+					<td><a href="/details/{{id}}/{{account.username|uuid}}/" target="_blank">{{fileName}}</a></td>
+					<td align="center">{{size|filesize}}</td>
+					<td align="center">{{account.username}}</td>
+					<td align="center">{{videofile}}</td>
+					<td align="center"><a href="/thumb/{{id}}/{{account.username|uuid}}/" target="_blank">img</a></td>
+				{{/if}}
+			</tr>
+		{{/history}}
+			<tr>
+				<th>Video ID</th>
+				<th>File Name</th>
+				<th>Size</th>
+				<th>User</th>
+				<th>Video File</th>
+				<th></th>
+			</tr>
+		</table>
+		{{/if}}
+		<div class="x100 paginate">
+			<div class="historyPagination" style="float:right;"></div>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+	$(".historyPagination").pagination({
+		items: {{historyTotal}},
+		itemsOnPage: {{limit}},
+		cssStyle: 'light-theme',
+		currentPage:{{historyPage}},
+		onPageClick: function(pageNumber, event){
+			vc.historyActionsPage(pageNumber);
+		}
+	});
+});
+</script>

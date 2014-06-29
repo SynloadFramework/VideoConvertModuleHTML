@@ -1,0 +1,51 @@
+<div class="container-fluid">
+	<div id="page-wrapper" style="margin-left:0px;margin-top:40px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;min-height:10px;padding-bottom:20px;height:auto;">
+		<div class="panel-body content" page="wrapper">
+			
+		</div>
+	</div>
+</div>
+<div id="footer" style="display:none;">
+	<div class="x100 footerleft">
+		<b><a href="//synload.com" target="_blank">Synload Development</a> &copy; 2014 Video Converter</b><br/>Running <a href="//github.com/firestar/synloadframework" target="_blank">Synload Framework 1.0.1</a> with Video Converter Module
+	</div>
+	<div class="x33" id="pr_c">
+		<div class="progress"><div class="bar"></div><span></span></div>
+	</div>
+</div>
+<div id="fileRemaining">
+	<ul>
+		<li></li>
+	</ul>
+</div>
+<input type="file" name="files[]" style="display:none;" id="filez" multiple>
+<script>
+
+$(function() {
+    $('#side-menu').metisMenu();
+    $("#pr_c").hover(function(){
+        $("#fileRemaining").css({"top":($("#footer").position().top-$("#footer").outerHeight()-$("#fileRemaining").outerHeight())+"px"});
+        $("#fileRemaining").fadeIn();
+    },function(){
+        $("#fileRemaining").fadeOut();
+    });
+    $(window).bind("load resize", function() {
+        if ($(this).width() < 768) {
+            $('div.sidebar-collapse').addClass('collapse');
+        } else {
+            $('div.sidebar-collapse').removeClass('collapse');
+        }
+        $("#footer").css({"marginTop":"-"+$("#footer").outerHeight()+"px"});
+    })
+    $(".navibar").mouseleave(function(){
+        page.hideMenu();
+    })
+    $(".navbar-brand").mouseenter(function(){
+        page.showMenu();
+    });
+	
+    $("#footer").animate({"marginTop":"-"+$("#footer").outerHeight()+"px"},function(){
+        $("#footer").fadeIn();
+    });
+});
+</script>

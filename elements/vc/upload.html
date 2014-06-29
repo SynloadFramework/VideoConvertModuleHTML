@@ -1,0 +1,34 @@
+<div class="padSmall x100">
+	<h3>Video Uploading</h3>
+	<div class="inner x100" style="padding-top:40px;padding-bottom:40px;">
+		<center><label for="filez"><img src="/resources/upload_button.png" style="cursor:pointer;" /></label></center>
+	</div>
+</div>
+<div class="padSmall x100" style="display:none;">
+	<h3>Upload Custom Settings</h3>
+	<div class="inner x100">
+		<input type="file" name="stores[]" id="storez" multiple>
+	</div>
+	<div class="inner x100">
+		<div style="float:left;background:#303;height:30px;width:0%;" id="progressstoreUpload"></div>
+	</div>
+</div>
+<script>
+$(function () {
+	
+	vc.uploadInit();
+	$("#storez").html5_upload({
+		url: function(number) {
+			return "/xmlupload";
+		},
+		extraFields:{
+			'user':'{{.|user}}',
+			'session':'{{.|uuid}}',
+			'store':'disk'
+		},
+		setProgress: function(val) {
+			$("#progressstoreUpload").css({'width':Math.ceil(val*100)+"%"});
+		},
+	});
+});
+</script>
